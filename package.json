@@ -1,0 +1,24 @@
+{
+  "name": "bankist-web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "dead-server --host=localhost --port=7878",
+    "start": "nodemon ./bankist-web/script.js"
+  },
+  "keywords": [
+    "JavaScript",
+    "Learning JavaScript",
+    "Learning project"
+  ],
+  "author": "Saulius Grazys",
+  "license": "MIT",
+  "devDependencies": {
+    "dead-server": "^1.0.9"
+  },
+  "dependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
