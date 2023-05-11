@@ -34,41 +34,36 @@ document.addEventListener('keydown', function (e) {
 });
 
 
-//// Selecting elements
-// console.log(document.documentElement);
-// console.log(document.head);
-// console.log(document.body);
-
-
 const header = document.querySelector('.header'); // pasirenkame pagal class
 const allSections = document.querySelectorAll('.section'); // pasirenkam visus elementus su class section, grazina node list'a
-// console.log(allSections);
+
 
 document.getElementById('section--1'); // pasirenkame eleenta pgl ID
 
-const allButtons = document.getElementsByTagName('button'); // pasirenkame visus elementus pagal tag'a
-// console.log(allButtons);
 
-// console.log(document.getElementsByClassName('btn'));
-
-
-// // //  creating and inserting elements
+// //  Creating and inserting elements
 const message = document.createElement('div');
 message.classList.add('cookie-message');
-// message.textContent = 'We use cookies for improved funcionality and analytics.';
 message.innerHTML = 'We use cookies for improved funcionality and analytics. <button class="btn btn--close-cookie">Got it!</button>';
 
-// header.prepend(message);
 header.append(message);
 // header.append(message.cloneNode(true))
 
-// header.before(message);
-// header.after(message);
 
-// // //  Deleting elements
+// //  Deleting elements
 
 document.querySelector('.btn--close-cookie').addEventListener('click', function () {
   message.remove();
+});
 
-  // message.parentElement.removeChild(message);
-})
+
+
+
+// Implement smoothly scrolling 
+
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+// const section2 = document.querySelector('#section--2');
+
+btnScrollTo.addEventListener('click', () => section1.scrollIntoView({ behavior: 'smooth' }))
+
