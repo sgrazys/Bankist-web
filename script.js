@@ -49,26 +49,21 @@ message.innerHTML = 'We use cookies for improved funcionality and analytics. <bu
 header.append(message);
 // header.append(message.cloneNode(true))
 
-
 // //  Deleting elements
 
 document.querySelector('.btn--close-cookie').addEventListener('click', function () {
   message.remove();
 });
 
-
-
-
 // Implement smoothly scrolling 
-
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
 // const section2 = document.querySelector('#section--2');
 
-btnScrollTo.addEventListener('click', () => section1.scrollIntoView({ behavior: 'smooth' }));
+btnScrollTo.addEventListener('click', () => section1.scrollIntoView({ behavior: 'smooth' }))
 
 
 // Some style on 'cookies message'
-message.style.width = '103%';
+message.style.width = '104%';
 message.style.padding = '8px';
 message.style.backgroundColor = '#37383d'
