@@ -1,12 +1,14 @@
 'use strict';
 
-///////////////////////////////////////
-// Modal window
-
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+
+///////////////////////////////////////
+// Modal window
 
 const openModal = function (e) {
   e.preventDefault();
@@ -33,10 +35,52 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
+///////////////////////////////////////
+// IMPLEMENTING SMOOTH SCROLLING
+// START:
+
+btnScrollTo.addEventListener('click', () => section1.scrollIntoView({ behavior: 'smooth' }))
+
+// END:
+
+///////////////////////////////////////
+//IMPLEMENTING PAGE NAVIGATION (smooth scrolling behaviour.)
+// START: 
+
+// document.querySelectorAll('.nav__link').forEach(function (el) {
+//   el.addEventListener('click', function (e) {
+//     e.preventDefault();
+
+//     const id = el.getAttribute('href');
+//     //#section--1
+
+//     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+
+//   })
+// })
+
+// EVENT DELEGATION
+// 1. Add event listener to common parent element
+// 2. Determine what element originated the event
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  e.preventDefault();
+
+  // Matching startegy
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' })
+  }
+})
+// END]
+
+
+///////////////////////////////////////
+// LEARNING STUFF
+// START:
 
 const header = document.querySelector('.header'); // pasirenkame pagal class
 const allSections = document.querySelectorAll('.section'); // pasirenkam visus elementus su class section, grazina node list'a
-
 
 document.getElementById('section--1'); // pasirenkame eleenta pgl ID
 
@@ -50,20 +94,15 @@ header.append(message);
 // header.append(message.cloneNode(true))
 
 // //  Deleting elements
-
 document.querySelector('.btn--close-cookie').addEventListener('click', function () {
   message.remove();
 });
-
-// Implement smoothly scrolling 
-const btnScrollTo = document.querySelector('.btn--scroll-to');
-const section1 = document.querySelector('#section--1');
-// const section2 = document.querySelector('#section--2');
-
-btnScrollTo.addEventListener('click', () => section1.scrollIntoView({ behavior: 'smooth' }))
 
 
 // Some style on 'cookies message'
 message.style.width = '104%';
 message.style.padding = '8px';
 message.style.backgroundColor = '#37383d'
+
+//END
+///////////////////////////////////////
