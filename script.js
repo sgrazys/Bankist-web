@@ -37,15 +37,24 @@ document.addEventListener('keydown', function (e) {
 
 ///////////////////////////////////////
 // IMPLEMENTING SMOOTH SCROLLING
-// START:
+// Start:
 
 btnScrollTo.addEventListener('click', () => section1.scrollIntoView({ behavior: 'smooth' }))
 
-// END:
+// End:
 
 ///////////////////////////////////////
 //IMPLEMENTING PAGE NAVIGATION (smooth scrolling behaviour.)
-// START: 
+// Start: 
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  e.preventDefault();
+
+  // Matching Startegy
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' })
+  }
+})
 
 // document.querySelectorAll('.nav__link').forEach(function (el) {
 //   el.addEventListener('click', function (e) {
@@ -63,21 +72,45 @@ btnScrollTo.addEventListener('click', () => section1.scrollIntoView({ behavior: 
 // 1. Add event listener to common parent element
 // 2. Determine what element originated the event
 
-document.querySelector('.nav__links').addEventListener('click', function (e) {
+
+// End
+
+///////////////////////////////////////
+// IMPLEMENTING TABBED COMPONENT
+// Start:
+
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content')
+
+
+tabsContainer.addEventListener('click', function (e) {
   e.preventDefault();
 
-  // Matching startegy
-  if (e.target.classList.contains('nav__link')) {
-    const id = e.target.getAttribute('href');
-    document.querySelector(id).scrollIntoView({ behavior: 'smooth' })
-  }
+  //Matching startegy
+  const clicked = e.target.closest('.operations__tab');
+
+  //Guard clause
+  if (!clicked) return;
+
+  //Remove active classes
+  tabs.forEach(t => t.classList.remove('operations__tab--active'))
+  tabsContent.forEach(c => c.classList.remove('operations__content--active'));
+
+  // Activate tab
+  clicked.classList.add('operations__tab--active');
+
+  //Activate content area
+  document.querySelector(`.operations__content--${clicked.dataset.tab}`).classList.add('operations__content--active');
 })
-// END]
+
+
+// End
 
 
 ///////////////////////////////////////
 // LEARNING STUFF
-// START:
+// Start:
 
 const header = document.querySelector('.header'); // pasirenkame pagal class
 const allSections = document.querySelectorAll('.section'); // pasirenkam visus elementus su class section, grazina node list'a
