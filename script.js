@@ -12,6 +12,7 @@ const tabs = document.querySelectorAll('.operations__tab');
 const tabsContainer = document.querySelector('.operations__tab-container');
 const tabsContent = document.querySelectorAll('.operations__content');
 const header = document.querySelector('.header')
+const body = document.querySelector('body')
 
 ///////////////////////////////////////
 // Modal window
@@ -161,13 +162,10 @@ nav.addEventListener('mouseout', handleHover.bind(1));
 
 // }
 
-
-
 // const observer = new IntersectionObserver(obsCallback, options);
 // observer.observe(section1);
 
 const navHeight = nav.getBoundingClientRect().height
-console.log(navHeight);
 
 const stickyNav = function (entries) {
   const [entry] = entries;
@@ -182,9 +180,37 @@ const headerObserver = new IntersectionObserver(stickyNav, {
 
 
 headerObserver.observe(header)
-
-
 // End.
+
+
+// IMPLEMENTING REVEALSECTION ON SCROLL
+// Start:
+
+
+const allSections = document.querySelectorAll('.section');
+
+
+const revealSection = function (entries, observer) {
+  const [entry] = entries
+
+  if (!entry.isIntersecting) return
+  entry.target.classList.remove('section--hidden');
+  observer.unobserve(entry.target)
+
+}
+
+const sectionObserver = new IntersectionObserver(revealSection, {
+  root: null,
+  threshold: 0.15,
+});
+
+allSections.forEach(section => {
+  sectionObserver.observe(section);
+  section.classList.add('section--hidden');
+});
+
+
+// End
 
 ///////////////////////////////////////
 // LEARNING STUFF
