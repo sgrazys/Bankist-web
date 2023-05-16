@@ -183,7 +183,7 @@ headerObserver.observe(header)
 // End.
 
 
-// IMPLEMENTING REVEALSECTION ON SCROLL
+// IMPLEMENTING REVEAL SECTION ON SCROLL
 // Start:
 
 
@@ -192,7 +192,9 @@ const allSections = document.querySelectorAll('.section');
 
 const revealSection = function (entries, observer) {
   const [entry] = entries
-
+  // console.log('This is observer', observer);
+  // console.log('This is entries', entries);
+  // console.log('This is entry', entry);
   if (!entry.isIntersecting) return
   entry.target.classList.remove('section--hidden');
   observer.unobserve(entry.target)
@@ -209,8 +211,41 @@ allSections.forEach(section => {
   section.classList.add('section--hidden');
 });
 
-
 // End
+
+
+// IMPLEMENTING LAZY LOADING IMAGES
+// Start:
+
+const imgTargets = document.querySelectorAll('img[data-src]');
+// console.log(imgTargets);
+
+const loadImg = function (entries, observer) {
+  const [entry] = entries;
+
+  if (!entry.isIntersecting) return
+  //Replace src with data-src
+  entry.target.src = entry.target.dataset.src;
+  entry.target.addEventListener('load', function () {
+    entry.target.classList.remove('lazy-img')
+  })
+
+  observer.unobserve(entry.target)
+
+}
+
+const imgObserver = new IntersectionObserver(loadImg, {
+  root: null,
+  threshold: 0,
+  rootMargin: '200px'
+})
+
+imgTargets.forEach(img => {
+  imgObserver.observe(img);
+})
+
+
+// End.
 
 ///////////////////////////////////////
 // LEARNING STUFF
