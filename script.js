@@ -369,5 +369,29 @@ slider();
 // message.style.padding = '8px';
 // message.style.backgroundColor = '#37383d'
 
+
+// LIFECYCLE DOM EVENTS
+
+//DOMContentLoaded - ivykis pasileidzia kaip uzkraunamas HTML'as is sukuriamas DOM'as. Kiti veiksniai neprivalo buti uzbaigti pvz: paveiklseliu atsiuntimas, ar JS uzkrovimas
+
+// document.addEventListener('DOMContentLoaded', function (e) {
+//   console.log('HTML Parsed and DOM tree built', e);
+// })
+
+// // load - ivykis pasileidzia kai visi failai uzsikrauna (HTML, CSS, JS, images etc) VISKAS TURI UZSIKRAUTI. Isauna tik tada kai HTML dokas yra pilnai pasrsiunciamas ir sukuriamas DOM'as. ISAUNA ant windows
+
+// window.addEventListener('load', function (e) {
+//   console.log('Page fully loaded', e);
+// })
+
+// beforeunload - isauna pries paliekant puslapi. Gali rodyt upranesimus ar prasyti patvirtinimo is userio jeigu puslapyje yra nepabaigtu veiksmu. ISAUNA ant winoes
+
+// window.addEventListener('beforeunload', function (e) {
+//   e.preventDefault();
+//   console.log(e);
+//   e.returnValue = '';
+// })
+
+
 //END
 ///////////////////////////////////////
